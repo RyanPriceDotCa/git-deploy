@@ -73,7 +73,7 @@ if (!empty(TOKEN) && isset($_SERVER["HTTP_X_HUB_SIGNATURE"]) && $token !== hash_
                 // execute AFTER_PULL if specified
                 if (!empty(AFTER_PULL)) {
                     try {
-                        shell_exec(AFTER_PULL);
+                        fputs($file, shell_exec(AFTER_PULL) . "\n");
                     } catch (Exception $e) {
                         fputs($file, $e . "\n");
                     }
